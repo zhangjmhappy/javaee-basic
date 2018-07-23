@@ -1,5 +1,8 @@
 package com.happyghost.myjooqdemo.entity;
 
+/**
+ * shop实体类
+ */
 public class Shop {
 
     private Integer id;

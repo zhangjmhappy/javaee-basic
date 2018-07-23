@@ -2,6 +2,6 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test_demo
     username: root
-    password: www.pupuwang.com
+    password: root
 server:
   port: 10010

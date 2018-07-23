@@ -81,11 +81,11 @@
 			<artifactId>jooq-codegen-maven</artifactId>
 			<version>3.10.7</version>
 		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-maven-plugin</artifactId>
-			<version>5.1.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.flywaydb</groupId>-->
+			<!--<artifactId>flyway-maven-plugin</artifactId>-->
+			<!--<version>5.1.1</version>-->
+		<!--</dependency>-->
 
 		<!-- pool -->
 		<dependency>
@@ -96,11 +96,13 @@
 
 
 		<!-- database -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.6</version>
+			<version>5.1.35</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
