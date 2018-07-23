@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.happyghost</groupId>
+	<artifactId>myjooqdemo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>myjooqdemo</name>
+	<description>My Jooq Demo</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+
+
+		<!--数据库迁移所用的参数 -->
+		<db.url>jdbc:mysql://java-dev.xwkj.local:3306</db.url>
+		<db.username>root</db.username>
+		<db.password>www.pupuwang.com</db.password>
+		<db.schema>test_demo</db.schema>
+	</properties>
+
+	<dependencies>
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!--jooq-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-meta</artifactId>
+			<version>3.10.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen</artifactId>
+			<version>3.10.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq-codegen-maven</artifactId>
+			<version>3.10.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+
+		<!-- pool -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.9</version>
+		</dependency>
+
+
+		<!-- database -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>2.7.8</version>
+		</dependency>
+
+		<!-- -->
+
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+				<!--数据库代码生成的插件 -->
+				<plugin>
+					<!-- 指定代码生成maven插件 -->
+					<groupId>org.jooq</groupId>
+					<artifactId>jooq-codegen-maven</artifactId>
+					<version>3.10.7</version>
+					<!-- 插件代码生成 -->
+					<executions>
+						<execution>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<!-- JDBC连接配置 -->
+						<jdbc>
+							<driver>com.mysql.jdbc.Driver</driver>
+							<url>${db.url}</url>
+							<user>${db.username}</user>
+							<password>${db.password}</password>
+						</jdbc>
+						<!-- 代码生成配置参数 -->
+						<generator>
+							<database>
+								<name>org.jooq.util.mysql.MySQLDatabase</name>
+								<includes>.*</includes>
+								<inputSchema>${db.schema}</inputSchema>
+								<forcedTypes>
+									<forcedType>
+										<name>BOOLEAN</name>
+										<expression>.*\.HANDMADE</expression>
+										<types>.*</types>
+									</forcedType>
+								</forcedTypes>
+							</database>
+							<!-- 代码生成路径 -->
+							<target>
+								<packageName>com.happyghost.myjooqdemo.jooq</packageName>
+								<directory>src/main/java</directory>
+							</target>
+						</generator>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+
+
+</project>
