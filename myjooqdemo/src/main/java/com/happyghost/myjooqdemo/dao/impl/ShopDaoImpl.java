@@ -16,7 +16,7 @@ public class ShopDaoImpl implements ShopDao {
 
     @Autowired
     DSLContext dslContext;
-
+ 
     @Override
     public int insertShop(Shop shop) {
         ShopRecord shopRecord = dslContext.newRecord(SHOP);
@@ -29,8 +29,11 @@ public class ShopDaoImpl implements ShopDao {
     @Override
     public List<Shop> findShops(Shop shop) {
         List<Shop> list = dslContext.selectFrom(SHOP).fetchInto(Shop.class);
+        dslContext.select().from(SHOP).orderBy(SHOP.CONTACT_NAME);
         return list;
     }
+
+
 
 
 }

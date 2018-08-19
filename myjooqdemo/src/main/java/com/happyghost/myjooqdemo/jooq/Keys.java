@@ -4,7 +4,9 @@
 package com.happyghost.myjooqdemo.jooq;
 
 
+import com.happyghost.myjooqdemo.jooq.tables.Build;
 import com.happyghost.myjooqdemo.jooq.tables.Shop;
+import com.happyghost.myjooqdemo.jooq.tables.records.BuildRecord;
 import com.happyghost.myjooqdemo.jooq.tables.records.ShopRecord;
 
 import javax.annotation.Generated;
@@ -12,6 +14,7 @@ import javax.annotation.Generated;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
+import org.jooq.types.UInteger;
 import org.jooq.types.ULong;
 
 
@@ -33,12 +36,14 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<BuildRecord, UInteger> IDENTITY_BUILD = Identities0.IDENTITY_BUILD;
     public static final Identity<ShopRecord, ULong> IDENTITY_SHOP = Identities0.IDENTITY_SHOP;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<BuildRecord> KEY_BUILD_PRIMARY = UniqueKeys0.KEY_BUILD_PRIMARY;
     public static final UniqueKey<ShopRecord> KEY_SHOP_PRIMARY = UniqueKeys0.KEY_SHOP_PRIMARY;
 
     // -------------------------------------------------------------------------
@@ -51,10 +56,12 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 {
+        public static Identity<BuildRecord, UInteger> IDENTITY_BUILD = Internal.createIdentity(Build.BUILD, Build.BUILD.ID);
         public static Identity<ShopRecord, ULong> IDENTITY_SHOP = Internal.createIdentity(Shop.SHOP, Shop.SHOP.ID);
     }
 
     private static class UniqueKeys0 {
+        public static final UniqueKey<BuildRecord> KEY_BUILD_PRIMARY = Internal.createUniqueKey(Build.BUILD, "KEY_build_PRIMARY", Build.BUILD.ID);
         public static final UniqueKey<ShopRecord> KEY_SHOP_PRIMARY = Internal.createUniqueKey(Shop.SHOP, "KEY_shop_PRIMARY", Shop.SHOP.ID);
     }
 }

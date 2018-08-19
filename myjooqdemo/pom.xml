@@ -26,9 +26,9 @@
 
 
 		<!--数据库迁移所用的参数 -->
-		<db.url>jdbc:mysql://java-dev.xwkj.local:3306</db.url>
+		<db.url>jdbc:mysql://localhost:3306</db.url>
 		<db.username>root</db.username>
-		<db.password>www.pupuwang.com</db.password>
+		<db.password>root</db.password>
 		<db.schema>test_demo</db.schema>
 	</properties>
 

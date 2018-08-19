@@ -4,6 +4,7 @@
 package com.happyghost.myjooqdemo.jooq;
 
 
+import com.happyghost.myjooqdemo.jooq.tables.Build;
 import com.happyghost.myjooqdemo.jooq.tables.Shop;
 
 import java.util.ArrayList;
@@ -30,12 +31,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TestDemo extends SchemaImpl {
 
-    private static final long serialVersionUID = 319415668;
+    private static final long serialVersionUID = 1770216547;
 
     /**
      * The reference instance of <code>test_demo</code>
      */
     public static final TestDemo TEST_DEMO = new TestDemo();
+
+    /**
+     * The table <code>test_demo.build</code>.
+     */
+    public final Build BUILD = com.happyghost.myjooqdemo.jooq.tables.Build.BUILD;
 
     /**
      * The table <code>test_demo.shop</code>.
@@ -67,6 +73,7 @@ public class TestDemo extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Build.BUILD,
             Shop.SHOP);
     }
 }

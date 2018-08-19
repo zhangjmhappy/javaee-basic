@@ -4,6 +4,7 @@
 package com.happyghost.myjooqdemo.jooq;
 
 
+import com.happyghost.myjooqdemo.jooq.tables.Build;
 import com.happyghost.myjooqdemo.jooq.tables.Shop;
 
 import javax.annotation.Generated;
@@ -30,6 +31,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index BUILD_PRIMARY = Indexes0.BUILD_PRIMARY;
     public static final Index SHOP_PRIMARY = Indexes0.SHOP_PRIMARY;
 
     // -------------------------------------------------------------------------
@@ -37,6 +39,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index BUILD_PRIMARY = Internal.createIndex("PRIMARY", Build.BUILD, new OrderField[] { Build.BUILD.ID }, true);
         public static Index SHOP_PRIMARY = Internal.createIndex("PRIMARY", Shop.SHOP, new OrderField[] { Shop.SHOP.ID }, true);
     }
 }

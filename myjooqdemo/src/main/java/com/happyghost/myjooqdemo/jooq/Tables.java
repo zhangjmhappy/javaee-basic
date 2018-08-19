@@ -4,6 +4,7 @@
 package com.happyghost.myjooqdemo.jooq;
 
 
+import com.happyghost.myjooqdemo.jooq.tables.Build;
 import com.happyghost.myjooqdemo.jooq.tables.Shop;
 
 import javax.annotation.Generated;
@@ -21,6 +22,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>test_demo.build</code>.
+     */
+    public static final Build BUILD = com.happyghost.myjooqdemo.jooq.tables.Build.BUILD;
 
     /**
      * The table <code>test_demo.shop</code>.
