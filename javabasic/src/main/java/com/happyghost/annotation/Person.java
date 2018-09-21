@@ -14,7 +14,7 @@ public class Person {
         this("unknown",0);
     }
 
-    @ConstructorAnnotation
+    @ConstructorAnnotation(value = "带参数的的构造方法")
     public Person(@CommonAnnotation(type = String.class,description = "姓名") String name,
                   @CommonAnnotation(type = int.class,description = "年龄") int age) {
         this.name = name;
