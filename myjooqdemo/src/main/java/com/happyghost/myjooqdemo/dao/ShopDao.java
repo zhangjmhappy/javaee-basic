@@ -16,6 +16,15 @@ public interface ShopDao {
     List<Shop> findShops(Shop shop);
 
 
+    /**
+     *
+     * @param shop
+     * @return
+     */
+    int updateShop(Shop shop);
+
+
+
 
 
 }

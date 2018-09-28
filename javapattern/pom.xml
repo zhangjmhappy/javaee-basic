@@ -11,10 +11,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>javapattern</artifactId>
+    <packaging>pom</packaging>
 
     <name>javapattern</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
+    <modules>
+        <module>../java-basic</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

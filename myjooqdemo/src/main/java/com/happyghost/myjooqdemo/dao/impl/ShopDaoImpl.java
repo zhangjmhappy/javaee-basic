@@ -15,8 +15,8 @@ import static com.happyghost.myjooqdemo.jooq.Tables.SHOP;
 public class ShopDaoImpl implements ShopDao {
 
     @Autowired
-    DSLContext dslContext;
- 
+    private DSLContext dslContext;
+
     @Override
     public int insertShop(Shop shop) {
         ShopRecord shopRecord = dslContext.newRecord(SHOP);
@@ -33,7 +33,10 @@ public class ShopDaoImpl implements ShopDao {
         return list;
     }
 
-
+    @Override
+    public int updateShop(Shop shop) {
+        return 0;
+    }
 
 
 }
