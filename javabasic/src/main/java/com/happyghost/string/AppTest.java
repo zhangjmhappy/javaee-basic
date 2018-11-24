@@ -14,5 +14,9 @@ public class AppTest {
         System.out.println(st.countTokens());
 
 
+        Byte a = 5;
+
+        System.out.println(a == 5);
+
     }
 }
