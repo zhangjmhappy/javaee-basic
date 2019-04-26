@@ -12,7 +12,7 @@ import java.io.IOException;
  **/
 public class LambdaTest1 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
 //        String s = () -> "sxxxx";
 
@@ -29,7 +29,7 @@ public class LambdaTest1 {
 
         String com_path = LambdaTest1.class.getClassLoader().getResource("./").getPath();
         System.out.println(com_path);
-        try (BufferedReader br = new BufferedReader(new FileReader(com_path+"data.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(com_path + "data.txt"))) {
             return br.readLine();
         }
     }

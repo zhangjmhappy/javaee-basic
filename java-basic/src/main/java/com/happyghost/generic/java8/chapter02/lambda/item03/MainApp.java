@@ -28,7 +28,7 @@ public class MainApp {
     public static String processFile(BufferedReaderProcessor bufferedReaderProcessor) throws IOException {
         String com_path = LambdaTest1.class.getClassLoader().getResource("./").getPath();
         System.out.println(com_path);
-        try (BufferedReader br = new BufferedReader(new FileReader(com_path+"data.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(com_path + "data.txt"))) {
             return bufferedReaderProcessor.process(br);
         }
     }

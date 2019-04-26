@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:plugin="http://pupuwang.com/plugin"
+            targetNamespace="http://pupuwang.com/element"
+            xmlns="http://pupuwang.com/element">
+
+    <xsd:complexType name="link">
+        <xsd:sequence>
+            <xsd:element name="param" type="param" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="name"></xsd:attribute>
+        <xsd:attribute name="page"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="param">
+        <xsd:attribute name="name" type="xsd:string" default="test"></xsd:attribute>
+        <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="dataSource">
+        <xsd:sequence>
+            <xsd:element name="table" type="xsd:string" maxOccurs="unbounded"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="listColumn">
+        <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="hide" type="xsd:boolean"></xsd:attribute>
+        <xsd:attribute name="order" type="xsd:integer"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="detailColumn">
+        <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="label" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="order" type="xsd:integer"></xsd:attribute>
+        <xsd:attribute name="display" type="xsd:boolean"></xsd:attribute>
+        <xsd:attribute name="align">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="left"/>
+                    <xsd:enumeration value="center"/>
+                    <xsd:enumeration value="right"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:attributeGroup name="typeAttrGroup">
+        <xsd:attribute name="name" type="xsd:string"/>
+        <xsd:attribute name="type" type="xsd:string">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="number"/>
+                    <xsd:enumeration value="mobile"/>
+                    <xsd:enumeration value="text"/>
+                    <xsd:enumeration value="date"/>
+                    <xsd:enumeration value="multi"/>
+                    <xsd:enumeration value="picture"/>
+                    <xsd:enumeration value="enum"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="label" type="xsd:string" default="defLabel"/>
+        <xsd:attribute name="order" type="xsd:integer" default="0"/>
+        <xsd:attribute name="display" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="align">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="left"/>
+                    <xsd:enumeration value="center"/>
+                    <xsd:enumeration value="right"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="value" type="xsd:string"/>
+    </xsd:attributeGroup>
+
+
+    <xsd:complexType name="editColumn">
+        <xsd:attributeGroup ref="typeAttrGroup"/>
+    </xsd:complexType>
+</xsd:schema>

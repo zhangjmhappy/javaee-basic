@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<note
+        xmlns="http://www.w3school.com.cn"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="schema/user-schema.xsd" name="">
+    <to>111</to>
+    <from>1211</from>
+    <heading>1</heading>
+    <body>123123</body>
+</note>

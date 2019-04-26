@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://happyghost.com"
+        xmlns="http://happyghost.com">
+    <xsd:element name="color" type="xsd:string" default="red">
+
+
+    </xsd:element>
+    <xsd:simpleType name="carType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Audi"/>
+            <xsd:enumeration value="Golf"/>
+            <xsd:enumeration value="BMW"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="car" type="carType" default="byd"/>
+
+
+</xsd:schema>

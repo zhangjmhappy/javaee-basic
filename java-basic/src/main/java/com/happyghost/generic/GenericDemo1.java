@@ -17,7 +17,7 @@ public class GenericDemo1<T> {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        return t ;
+        return t;
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
