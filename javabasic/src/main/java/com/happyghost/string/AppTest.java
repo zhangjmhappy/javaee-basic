@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 public class AppTest {
     public static void main(String[] args) {
         String userAgent = "xxx==jjj==yyy";
-        StringTokenizer st = new StringTokenizer(userAgent,"==");
+        StringTokenizer st = new StringTokenizer(userAgent, "==");
         System.out.println(st.countTokens());
         while (st.hasMoreTokens()) {
             String ssss = st.nextToken();
@@ -17,6 +17,7 @@ public class AppTest {
         Byte a = 5;
 
         System.out.println(a == 5);
+
 
     }
 }

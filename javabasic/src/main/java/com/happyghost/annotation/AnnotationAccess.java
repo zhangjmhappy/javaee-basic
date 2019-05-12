@@ -36,10 +36,10 @@ public class AnnotationAccess {
             System.out.println("参数长度111：" + length);
             if (length == 0) {
                 System.out.println("    未添加Annotation注解");
-            }else{
-                for (int j = 0; j < length ; j++) {
-                    CommonAnnotation pa = (CommonAnnotation)parameterAnnotation[i][j];
-                    System.out.print("第"+(i + 1) + "个参数：  " + pa.description());
+            } else {
+                for (int j = 0; j < length; j++) {
+                    CommonAnnotation pa = (CommonAnnotation) parameterAnnotation[i][j];
+                    System.out.print("第" + (i + 1) + "个参数：  " + pa.description());
                     System.out.println("    " + pa.type());
                 }
             }
@@ -63,7 +63,7 @@ public class AnnotationAccess {
 
     private static void printMethodAnnotation(Class clazz) {
         System.out.println("======方法描述如下======");
-        Method[] declaredMethods= clazz.getDeclaredMethods();
+        Method[] declaredMethods = clazz.getDeclaredMethods();
         for (int i = 0; i < declaredMethods.length; i++) {
             Method method = declaredMethods[i];
             if (method.isAnnotationPresent(CommonAnnotation.class)) {
@@ -85,8 +85,6 @@ public class AnnotationAccess {
         printFiledAnnotation(personClass);
         printMethodAnnotation(personClass);
     }
-
-
 
 
 }

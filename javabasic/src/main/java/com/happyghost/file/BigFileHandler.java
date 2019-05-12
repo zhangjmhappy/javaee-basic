@@ -12,27 +12,30 @@ import java.util.concurrent.BlockingQueue;
 /**
  * 楼主，你这是大文件，想要用Java分片读取，估计是不可能了。
  * 如果是小于2G的文件，Java可以分片读取数据。
- *
+ * <p>
  * 目前的解决方案，应该是，一个线程读取数据，另外的线程将读取的数据处理掉。
  * https://bbs.csdn.net/topics/390439099
  */
 public class BigFileHandler {
 
-    interface DataHandler{
+    interface DataHandler {
         void doHandler(String[] data);
     }
-    interface ErrorHandler{
+
+    interface ErrorHandler {
         void doHandler(Throwable t);
+
         public static final ErrorHandler PRINTER = new ErrorHandler() {
             public void doHandler(Throwable t) {
                 t.printStackTrace();
             }
         };
     }
+
     /**
      * 核心类，大文件数据处理器
      */
-    class BigFileProcessor{
+    class BigFileProcessor {
         /**
          * 记录的分隔符，每个分隔符占一行。
          */
@@ -56,21 +59,22 @@ public class BigFileHandler {
          * 数据处理线程
          */
         private Thread[] proccessors;
+
         public BigFileProcessor(final File file, final DataHandler handler) {
             fileReader = new Thread(new Runnable() {
                 public void run() {
                     try {
                         Charset charset = Charset.defaultCharset();
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),charset));
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
                         String line = null;
                         ArrayList<String> cache = new ArrayList<String>();
-                        while(running&&(line=reader.readLine())!=null){
+                        while (running && (line = reader.readLine()) != null) {
                             line = line.trim();
-                            if(seperator.equals(line)){
+                            if (seperator.equals(line)) {
                                 String[] data = cache.toArray(new String[cache.size()]);
                                 cache.clear();
                                 queue.put(data);
-                            }else{
+                            } else {
                                 cache.add(line);
                             }
                         }
@@ -84,19 +88,19 @@ public class BigFileHandler {
                         }
                     }
                 }
-            },"reader_thread");
+            }, "reader_thread");
             //默认创建的线程数，与CPU处理的内核数相同，楼主可以自行更改。
             proccessors = new Thread[Runtime.getRuntime().availableProcessors()];
             Runnable worker = new Runnable() {
                 public void run() {
                     try {
-                        for(;;){
+                        for (; ; ) {
                             Object obj = queue.take();
-                            if(obj==POISON){
+                            if (obj == POISON) {
                                 queue.put(obj);
                                 break;
-                            }else{
-                                String[] data =(String[])obj;
+                            } else {
+                                String[] data = (String[]) obj;
                                 handler.doHandler(data);
                             }
                         }
@@ -105,45 +109,50 @@ public class BigFileHandler {
                     }
                 }
             };
-            for(int i=0;i<proccessors.length;i++){
-                proccessors[i] = new Thread(worker,"proccessor-thread_"+i);
+            for (int i = 0; i < proccessors.length; i++) {
+                proccessors[i] = new Thread(worker, "proccessor-thread_" + i);
             }
         }
+
         public void setErrorHandler(ErrorHandler errorHandler) {
             this.errorHandler = errorHandler;
         }
+
         public void setSeperator(String seperator) {
             this.seperator = seperator;
         }
+
         /**
          * 开启处理过程
          */
-        public synchronized void start(){
-            if(running)return ;
+        public synchronized void start() {
+            if (running) return;
             running = true;
             fileReader.start();
-            for(int i=0;i<proccessors.length;i++){
+            for (int i = 0; i < proccessors.length; i++) {
                 proccessors[i].start();
             }
         }
+
         /**
          * 中断处理过程，非强制中断
          */
-        public synchronized void shutdown(){
-            if(running){
+        public synchronized void shutdown() {
+            if (running) {
                 running = false;
             }
         }
+
         /**
          * 试图等待整个处理过程完毕
          */
-        public void join(){
+        public void join() {
             try {
                 fileReader.join();
             } catch (InterruptedException e) {
                 errorHandler.doHandler(e);
             }
-            for(int i=0;i<proccessors.length;i++){
+            for (int i = 0; i < proccessors.length; i++) {
                 try {
                     proccessors[i].join();
                 } catch (InterruptedException e) {
@@ -152,25 +161,28 @@ public class BigFileHandler {
             }
         }
     }
+
     /**
      * 测试用例，教你怎样使用这些代码。
      */
-    public void testcase(){
+    public void testcase() {
         File file = new File("D:\\tmp\\11.txt");
         DataHandler dataHandler = new DataHandler() {
             public void doHandler(String[] data) {
                 synchronized (System.out) {
-                    for(String s : data){
-                        System.out.print(s);System.out.print('\t');
+                    for (String s : data) {
+                        System.out.print(s);
+                        System.out.print('\t');
                     }
                     System.out.println();
                 }
             }
         };
-        BigFileProcessor processor = new BigFileProcessor(file,dataHandler);
+        BigFileProcessor processor = new BigFileProcessor(file, dataHandler);
         processor.start();
         processor.join();
     }
+
     /**
      * 程序入口
      */

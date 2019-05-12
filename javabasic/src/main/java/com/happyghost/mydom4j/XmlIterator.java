@@ -16,9 +16,9 @@ import java.util.Iterator;
 public class XmlIterator {
 
     private File inputXml;
-    
+
     public XmlIterator(File inputXml) {
-       this.inputXml = inputXml;
+        this.inputXml = inputXml;
     }
 
     public static void main(String[] argv) {
@@ -32,14 +32,13 @@ public class XmlIterator {
 
         dom4jParser.traversalDocumentByIterator();
 
-     }
-    
-    
-    
+    }
+
+
     public Element getRootElement() {
         return getDocument().getRootElement();
-     }
-    
+    }
+
     public Document getDocument() {
         SAXReader saxReader = new SAXReader();
         Document document = null;
@@ -49,35 +48,33 @@ public class XmlIterator {
             e.printStackTrace();
         }
         return document;
-     }
-    
+    }
+
     /*
      * 该方法只是枚举了两层，如果一直挖的话要用递归方法
      */
     public void traversalDocumentByIterator() {
         Element root = getRootElement();
         // 枚举根节点下所有子节点
-        for (Iterator ie = root.elementIterator(); ie.hasNext();) {
+        for (Iterator ie = root.elementIterator(); ie.hasNext(); ) {
             System.out.println("======");
             Element element = (Element) ie.next();
             System.out.println(element.getName());
-  
+
             // 枚举属性
-            for (Iterator ia = element.attributeIterator(); ia.hasNext();) {
-               Attribute attribute = (Attribute) ia.next();
-               System.out.println(attribute.getName() + ":"
-                      + attribute.getData());
+            for (Iterator ia = element.attributeIterator(); ia.hasNext(); ) {
+                Attribute attribute = (Attribute) ia.next();
+                System.out.println(attribute.getName() + ":"
+                        + attribute.getData());
             }
-            
+
             // 枚举当前节点下所有子节点
-            for (Iterator ieson = element.elementIterator(); ieson.hasNext();) {
-               Element elementSon = (Element) ieson.next();
-               System.out.println(elementSon.getName() + ":"+ elementSon.getText());
+            for (Iterator ieson = element.elementIterator(); ieson.hasNext(); ) {
+                Element elementSon = (Element) ieson.next();
+                System.out.println(elementSon.getName() + ":" + elementSon.getText());
             }
         }
-     }
-    
-    
-    
-    
+    }
+
+
 }
