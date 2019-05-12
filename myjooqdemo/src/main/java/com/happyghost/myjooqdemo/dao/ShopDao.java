@@ -8,6 +8,7 @@ public interface ShopDao {
 
     /**
      * 插入店铺对象
+     *
      * @param shop
      * @return 店铺对象
      */
@@ -17,14 +18,10 @@ public interface ShopDao {
 
 
     /**
-     *
      * @param shop
      * @return
      */
     int updateShop(Shop shop);
-
-
-
 
 
 }

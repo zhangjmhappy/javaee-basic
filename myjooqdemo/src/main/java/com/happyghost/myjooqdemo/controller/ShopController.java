@@ -25,7 +25,7 @@ public class ShopController {
     }
 
     @GetMapping("shops")
-    public List<Shop> findShops( Shop shop) {
+    public List<Shop> findShops(Shop shop) {
         System.out.println("test devtool shop====");
         return shopService.findShops(shop);
     }
