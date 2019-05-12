@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,8 @@ public class ElasticsearchdemoApplication {
     @Autowired
     private TransportClient client;
 
+    ElasticsearchTemplate elasticsearchTemplate;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ElasticsearchdemoApplication.class, args);
@@ -42,6 +45,7 @@ public class ElasticsearchdemoApplication {
     @GetMapping("/get/info")
     @ResponseBody
     public ResponseEntity get(@RequestParam(name = "id",defaultValue = "") String id){
+
         if(id.isEmpty()){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
