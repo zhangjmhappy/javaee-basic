@@ -6,7 +6,7 @@ package com.happyghost.javapattern.adapter.adapter2;
  * @author HappyGhost
  * @create 2018-08-19 22:53
  **/
-public class MyAdapter  implements Ps2 {
+public class MyAdapter implements Ps2 {
 
     private Usb usb;
 

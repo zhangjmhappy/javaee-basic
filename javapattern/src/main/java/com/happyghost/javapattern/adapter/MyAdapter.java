@@ -6,7 +6,7 @@ package com.happyghost.javapattern.adapter;
  * @author HappyGhost
  * @create 2018-08-19 22:53
  **/
-public class MyAdapter extends Usber implements Ps2{
+public class MyAdapter extends Usber implements Ps2 {
 
     @Override
     public void isPs2() {
