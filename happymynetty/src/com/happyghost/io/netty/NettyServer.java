@@ -33,6 +33,22 @@ public class NettyServer {
                         });
 
                     }
-                }).bind(8000);
+                });
+        bind(serverBootstrap,135);
+
+//        ChannelOption
     }
+
+    private static void bind(final ServerBootstrap serverBootstrap, final int port) {
+        serverBootstrap.bind(port).addListener(future -> {
+            if (future.isSuccess()) {
+                System.out.println("端口绑定成功！port:" + port);
+            }else{
+                System.out.println("端口绑定失败！");
+                bind(serverBootstrap, port + 1);
+            }
+        });
+    }
+
+
 }
