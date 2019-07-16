@@ -13,8 +13,8 @@ public class Data {
     static {
         UserModel zhangSan = new UserModel("zhangSan", 18, "男");
         UserModel liSi = new UserModel("liSi", 20, "女");
-        UserModel rose = new UserModel("rose", 25, "女");
-        UserModel jack = new UserModel("jack", 30, "男");
+        UserModel rose = new UserModel("rose", 30, "女");
+        UserModel jack = new UserModel("jack", 25, "男");
         UserModel tom = new UserModel("tom", 40, "男");
         list = Arrays.asList(zhangSan, liSi, rose, jack, tom);
 

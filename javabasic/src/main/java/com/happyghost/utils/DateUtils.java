@@ -1,5 +1,7 @@
 package com.happyghost.utils;
 
+import org.junit.Test;
+
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,5 +37,7 @@ public class DateUtils {
         System.out.println(DateUtils.isDateTime("2019-06-08 12:00:020"));
         System.out.println(DateUtils.isDateTime("2019-06-08 12:00"));
     }
+
+
 
 }
