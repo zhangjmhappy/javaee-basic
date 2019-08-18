@@ -16,10 +16,12 @@ import java.util.Date;
 public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
         Bootstrap bootstrap = new Bootstrap();
-        NioEventLoopGroup group = new NioEventLoopGroup();
+        NioEventLoopGroup workGroup = new NioEventLoopGroup();
 
-        bootstrap.group(group).channel(NioSocketChannel.class)
-                .handler(new ChannelInitializer<Channel>() {
+        bootstrap
+                .group(workGroup)   //1.指定线程模型
+                .channel(NioSocketChannel.class)    //2.指定IO模型
+                .handler(new ChannelInitializer<Channel>() {    //3.IO处理逻辑
                     @Override
                     protected void initChannel(Channel channel) throws Exception {
                         channel.pipeline().addLast(new StringEncoder());
@@ -32,6 +34,8 @@ public class NettyClient {
             channel.writeAndFlush(new Date() + ":hello world");
             Thread.sleep(2000);
         }
+
+
     }
 
 }

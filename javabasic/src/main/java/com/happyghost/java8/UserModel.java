@@ -13,13 +13,35 @@ public class UserModel {
 
     private String sex;
 
+    private boolean city;
+
+    private Integer salary;
+
     public UserModel() {
+
     }
 
-    public UserModel(String name, int age, String sex) {
+    public boolean isCity() {
+        return city;
+    }
+
+    public void setCity(boolean city) {
+        this.city = city;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public UserModel(String name, int age, String sex,Integer salary) {
         this.name = name;
         this.age = age;
         this.sex = sex;
+        this.salary = salary;
     }
 
     public String getName() {
@@ -45,6 +67,8 @@ public class UserModel {
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+
 
     @Override
     public String toString() {

@@ -16,7 +16,9 @@ public class MainApp {
         String exStr = getExpStr();
         HashMap<String, Integer> var = getValue(exStr);
         Calculator calc = new Calculator(exStr);
-        System.out.println("运算结果为："+exStr+"="+calc.run(var));
+        //System.out.println("运算结果为："+exStr+"="+calc.run(var));
+        System.out.printf("运算结果为：%s=%s", exStr, calc.run(var));
+
     }
 
 
@@ -31,7 +33,7 @@ public class MainApp {
         for (char ch : exStr.toCharArray()) {
             if (ch != '+' && ch != '-') {
                 if (!map.containsKey(String.valueOf(ch))) {
-                    System.out.println("111");
+                    System.out.printf("请输入%c的值",ch);
                     String in = (new BufferedReader(new InputStreamReader(System.in))).readLine();
                     map.put(String.valueOf(ch), Integer.valueOf(in));
                 }

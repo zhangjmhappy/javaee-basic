@@ -168,6 +168,7 @@ public class BigFileHandler {
     public void testcase() {
         File file = new File("D:\\tmp\\11.txt");
         DataHandler dataHandler = new DataHandler() {
+            @Override
             public void doHandler(String[] data) {
                 synchronized (System.out) {
                     for (String s : data) {

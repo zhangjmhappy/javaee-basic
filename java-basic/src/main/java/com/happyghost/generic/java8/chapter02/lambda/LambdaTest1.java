@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author HappyGhost
@@ -16,6 +17,10 @@ public class LambdaTest1 {
 
 //        String s = () -> "sxxxx";
 
+
+
+
+
         try {
             String s = processFile();
             System.out.println(s);
@@ -26,6 +31,8 @@ public class LambdaTest1 {
     }
 
     public static String processFile() throws IOException {
+
+
 
         String com_path = LambdaTest1.class.getClassLoader().getResource("./").getPath();
         System.out.println(com_path);

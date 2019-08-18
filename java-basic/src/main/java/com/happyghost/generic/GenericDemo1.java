@@ -26,6 +26,8 @@ public class GenericDemo1<T> {
         Object appStr = str.genericMethod(Class.forName("java.lang.String"));
         System.out.println(appStr.toString());
 
+
+
     }
 
 
