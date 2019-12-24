@@ -2,9 +2,7 @@ package com.happyghost.java8;
 
 import org.junit.Test;
 
-import java.io.InputStream;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -169,8 +167,40 @@ public class SteamTest {
         List<String> bbb = words.stream().map(word -> word.split("")).flatMap(Arrays::stream).distinct().collect(toList());
         System.out.println(bbb); //[H, e, l, o, W, r, d]
 
+//        for (String bbbStr : bbb) {
+//            System.out.println(bbbStr);
+//        }
+
+        //给定一组数的平方
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> squares = numbers.stream().map(n -> n * n).collect(toList());
+        System.out.println(squares);
+
+        //对数[1,2,3]和[3,4]
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3);
+        List<Integer> numbers2 = Arrays.asList(3, 4);
+        List<int[]> pairs = numbers1.stream().flatMap(i -> numbers2.stream().map(j -> new int[]{i, j})).collect(toList());
+        System.out.println("得到的数组对数");
+        for (int[] pair : pairs) {
+            System.out.println(pair[0]+"," + pair[1]);
+        }
+
+        List<int[]> pairs2 = numbers1.stream().flatMap(i -> numbers2.stream()
+                                                        .filter(j -> ( i + j) % 3 ==0)  //筛选为被3整除
+                                                        .map(j -> new int[]{i, j})
+                                                    ).collect(toList());
+
+        System.out.println("筛选为被3整除数组对数");
+        for (int[] pair : pairs2) {
+            System.out.println(pair[0]+"," + pair[1]);
+        }
+
+
 
     }
+
+
+
 
     @Test
     public void test06() {
@@ -183,11 +213,23 @@ public class SteamTest {
     @Test
     public void testMatchAndFind() {
         List<Integer> numbers = Arrays.asList(1, 2, 4, 5, 6, 7);
-        if (numbers.stream().anyMatch(n -> n > 5)) {
-            System.out.println("没有找到");
+        if (numbers.stream().anyMatch(n -> n < 10)) {
+            System.out.println("找到元素");
         } else {
-            System.out.println("111");
+            System.out.println("没有找到元素");
         }
+
+
+        List<Integer> numbers2 = Arrays.asList(1, 2, 4, 5, 6, 7);
+
+        if (numbers.stream().allMatch(n -> n < 10)) {
+            System.out.println("找到元素");
+        } else {
+            System.out.println("没有找到元素");
+        }
+
+        System.out.println(numbers.stream().findAny().orElse(0));
+
     }
 
     /**
@@ -222,6 +264,9 @@ public class SteamTest {
         List<Integer> numbers = Arrays.asList(4, 5, 3, 9);
         Optional<Integer> max = numbers.stream().reduce(Integer::max);
         max.ifPresent(System.out::println);
+
+        Optional<Integer> min = numbers.stream().reduce(Integer::min);
+        min.ifPresent(System.out::println);
     }
 
     @Test
@@ -239,5 +284,8 @@ public class SteamTest {
 
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }

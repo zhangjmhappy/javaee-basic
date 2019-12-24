@@ -9,5 +9,7 @@ public class HashMapTest {
 
         Byte a = 5;
         System.out.println(a == 5);
+
+
     }
 }
